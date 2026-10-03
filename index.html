@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MH DIGITAL SEVA</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f1f5f9;
+    color:#1e293b;
+}
+
+/* HEADER */
+.header{
+    height:70px;
+    background:linear-gradient(135deg,#075985,#0284c7);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.logo small{
+    display:block;
+    font-size:11px;
+    font-weight:normal;
+    margin-top:3px;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.profile-circle{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#fff;
+    color:#075985;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+/* LAYOUT */
+.layout{
+    display:flex;
+    min-height:calc(100vh - 70px);
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:240px;
+    background:#0f172a;
+    color:white;
+    padding:20px 12px;
+    flex-shrink:0;
+}
+
+.sidebar-title{
+    color:#94a3b8;
+    font-size:12px;
+    padding:10px 14px;
+    text-transform:uppercase;
+}
+
+.sidebar a{
+    display:block;
+    color:#e2e8f0;
+    text-decoration:none;
+    padding:13px 15px;
+    margin:4px 0;
+    border-radius:8px;
+}
+
+.sidebar a:hover,
+.sidebar a.active{
+    background:#0284c7;
+    color:white;
+}
+
+/* MAIN */
+.main{
+    flex:1;
+    padding:25px;
+}
+
+/* WELCOME */
+.welcome{
+    background:#fff;
+    border-radius:15px;
+    padding:25px;
+    margin-bottom:22px;
+    box-shadow:0 3px 10px rgba(0,0,0,.06);
+}
+
+.welcome h1{
+    color:#075985;
+    margin-bottom:7px;
+}
+
+.welcome p{
+    color:#64748b;
+}
+
+/* SEARCH */
+.search-box{
+    margin-bottom:25px;
+}
+
+.search-box input{
+    width:100%;
+    padding:14px 18px;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    outline:none;
+    font-size:15px;
+}
+
+.search-box input:focus{
+    border-color:#0284c7;
+}
+
+/* TITLE */
+.section-title{
+    font-size:21px;
+    margin-bottom:16px;
+}
+
+/* SERVICE GRID */
+.services{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+/* CARD */
+.card{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:15px;
+    padding:22px;
+    min-height:190px;
+    box-shadow:0 3px 10px rgba(0,0,0,.06);
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+    border-color:#38bdf8;
+}
+
+.card-icon{
+    width:55px;
+    height:55px;
+    border-radius:13px;
+    background:#e0f2fe;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    margin-bottom:14px;
+}
+
+.card h3{
+    font-size:17px;
+    margin-bottom:8px;
+    color:#0f172a;
+}
+
+.card p{
+    color:#64748b;
+    font-size:13px;
+    line-height:1.5;
+    min-height:38px;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:14px;
+    background:#0284c7;
+    color:#fff;
+    text-decoration:none;
+    padding:10px 17px;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.btn:hover{
+    background:#0369a1;
+}
+
+/* FOOTER */
+.footer{
+    margin-top:30px;
+    background:#0f172a;
+    color:#cbd5e1;
+    padding:20px;
+    text-align:center;
+    border-radius:10px;
+    font-size:13px;
+}
+
+/* MOBILE MENU */
+.menu-btn{
+    display:none;
+    font-size:27px;
+    cursor:pointer;
+}
+
+/* RESPONSIVE */
+@media(max-width:950px){
+
+    .services{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:700px){
+
+    .header{
+        padding:0 15px;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .profile{
+        display:none;
+    }
+
+    .sidebar{
+        position:fixed;
+        top:70px;
+        left:-250px;
+        bottom:0;
+        z-index:900;
+        transition:.3s;
+    }
+
+    .sidebar.show{
+        left:0;
+    }
+
+    .main{
+        padding:15px;
+    }
+
+    .services{
+        grid-template-columns:1fr;
+    }
+
+    .logo{
+        font-size:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+    <div class="logo">
+        MH DIGITAL SEVA
+        <small>Digital Service Portal</small>
+    </div>
+
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+    <div class="profile">
+        <div>
+            <b>Operator</b>
+            <br>
+            <small>MH DIGITAL SEVA</small>
+        </div>
+
+        <div class="profile-circle">
+            MH
+        </div>
+    </div>
+
+</header>
+
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-title">Main Menu</div>
+
+    <a href="#" class="active">🏠 Dashboard</a>
+
+    <a href="#services">📋 Services</a>
+
+    <a href="#">👤 Profile</a>
+
+    <a href="#">📊 Reports</a>
+
+    <a href="#">💬 Support</a>
+
+    <a href="#">⚙️ Settings</a>
+
+</aside>
+
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+    <!-- WELCOME -->
+    <div class="welcome">
+
+        <h1>Welcome to MH DIGITAL SEVA</h1>
+
+        <p>
+            All Digital Services at One Place
+        </p>
+
+    </div>
+
+
+    <!-- SEARCH -->
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="🔍 Search service..."
+            onkeyup="searchServices()"
+        >
+
+    </div>
+
+
+    <!-- SERVICES -->
+    <h2 class="section-title" id="services">
+        Available Services
+    </h2>
+
+
+    <div class="services" id="serviceList">
+
+
+        <!-- PAN CARD -->
+        <div class="card">
+
+            <div class="card-icon">🪪</div>
+
+            <h3>PAN CARD SEVICE</h3>
+
+            <p>
+                PAN Card online service
+            </p>
+
+            <a
+                class="btn"
+                href="https://onlineservices.proteantech.in/paam/endUserRegisterContact.html"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Open Service →
+            </a>
+
+        </div>
+
+
+        <!-- VOTER ID -->
+        <div class="card">
+
+            <div class="card-icon">🗳️</div>
+
+            <h3>VOTOE ID CARD SEVICE</h3>
+
+            <p>
+                Voter ID online service
+            </p>
+
+            <a
+                class="btn"
+                href="https://voters.eci.gov.in/login"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Open Service →
+            </a>
+
+        </div>
+
+
+        <!-- AADHAAR -->
+        <div class="card">
+
+            <div class="card-icon">🆔</div>
+
+            <h3>ADHAR CARD</h3>
+
+            <p>
+                Aadhaar online service
+            </p>
+
+            <a
+                class="btn"
+                href="https://myaadhaarbeta.uidai.gov.in/check-aadhaar-validity/en"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Open Service →
+            </a>
+
+        </div>
+
+
+        <!-- AYUSHMAN -->
+        <div class="card">
+
+            <div class="card-icon">🏥</div>
+
+            <h3>AYUSHMAN PORTAL</h3>
+
+            <p>
+                Ayushman beneficiary portal
+            </p>
+
+            <a
+                class="btn"
+                href="https://beneficiary.nha.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Open Service →
+            </a>
+
+        </div>
+
+
+        <!-- ANYROR -->
+        <div class="card">
+
+            <div class="card-icon">🗺️</div>
+
+            <h3>7/12 CHEAK STUS</h3>
+
+            <p>
+                Gujarat land record service
+            </p>
+
+            <a
+                class="btn"
+                href="https://anyror.gujarat.gov.in/LandRecordRural.aspx"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Open Service →
+            </a>
+
+        </div>
+
+
+        <!-- IORA -->
+        <div class="card">
+
+            <div class="card-icon">📄</div>
+
+            <h3>7/12 UATRO KADHVA MATE</h3>
+
+            <p>
+                7/12 Utara online service
+            </p>
+
+            <a
+                class="btn"
+                href="https://iora.gujarat.gov.in/ror_online.aspx"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Open Service →
+            </a>
+
+        </div>
+
+
+        <!-- UGVCL -->
+        <div class="card">
+
+            <div class="card-icon">💡</div>
+
+            <h3>BILL PAYMNET UGVCL</h3>
+
+            <p>
+                UGVCL bill payment service
+            </p>
+
+            <a
+                class="btn"
+                href="https://mpay.guvnl.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Open Service →
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <div class="footer">
+
+        © 2026 MH DIGITAL SEVA | Digital Service Portal
+
+    </div>
+
+</main>
+
+</div>
+
+
+<script>
+
+/* MOBILE SIDEBAR */
+function toggleMenu(){
+
+    document
+    .getElementById("sidebar")
+    .classList.toggle("show");
+
+}
+
+
+/* SERVICE SEARCH */
+function searchServices(){
+
+    let input =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+    let cards =
+        document
+        .querySelectorAll(".card");
+
+    cards.forEach(function(card){
+
+        let text =
+            card.innerText.toLowerCase();
+
+        if(text.includes(input)){
+
+            card.style.display = "";
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
